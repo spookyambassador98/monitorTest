@@ -1,0 +1,14 @@
+body {
+  background-color: black;
+  margin: 0;
+  padding: 0;
+}
+
+.chart-container {
+  width: 80%;
+  margin: 50px auto;
+}
+
+#dynamic-chart {
+  background-color: black;
+}

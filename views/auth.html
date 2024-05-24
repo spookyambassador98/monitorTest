@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Chart</title>
+  <style>
+    body {
+      background-color: black;
+      margin: 0;
+      padding: 0;
+    }
+    canvas {
+      background-color: black;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="dynamic-chart"></canvas>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx = document.getElementById('dynamic-chart').getContext('2d');
+    const data = {
+      labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+      datasets: [{
+        label: 'Dynamic Chart',
+        data: [],
+        borderColor: 'green',
+        borderWidth: 2
+      }]
+    };
+    const options = {
+      scales: {
+        yAxes: [{
+          ticks: {
+            fontColor: 'white'
+          }
+        }],
+        xAxes: [{
+          ticks: {
+            fontColor: 'white'
+          }
+        }]
+      }
+    };
+    const dynamicChart = new Chart(ctx, {
+      type: 'line',
+      data: data,
+      options: options
+    });
+
+    function generateData() {
+      const newData = [];
+      for (let i = 0; i < 10; i++) {
+        newData.push(Math.floor(Math.random() * 100));
+      }
+      return newData;
+    }
+
+    setInterval(function() {
+      dynamicChart.data.datasets[0].data = generateData();
+      dynamicChart.update();
+    }, 2000);
+  </script>
+</body>
+</html>
